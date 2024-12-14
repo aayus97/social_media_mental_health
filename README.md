@@ -15,7 +15,7 @@ This project is an interactive visualization tool for exploring the relationship
 - **GitHub Pages**: Free hosting for the project.
 
 ## How to Use
-1. Visit the hosted site ['https://aayus97.github.io/social_media_mental_health/'].
+1. Visit the hosted site [https://aayus97.github.io/social_media_mental_health/].
 2. Interact with the following:
    - **Buttons**: Switch between radial, stacked bar, and line charts.
    - **Slider**: Adjust the year range to explore data trends dynamically.
