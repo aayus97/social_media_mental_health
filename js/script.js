@@ -37,19 +37,6 @@ d3.select("#time-slider")
 d3.select("#time-slider-value").text(yearExtent[0]); // Initialize display
 
 
-  // Populate year selector dropdown
-//   yearSelector.selectAll("option")
-//     .data(["All", ...years])
-//     .enter()
-//     .append("option")
-//     .attr("value", d => d)
-//     .text(d => d);
-
-  // Event listeners for filters
-//   yearSelector.on("change", updateChart);
-//   studentSelector.on("change", updateChart);
-//   categorySelector.on("change", updateChart);
-
 d3.select("#student-filter").on("change", function () {
     const selectedYear = timeSlider.node().value; // Get the current year from the slider
     updateChart(selectedYear); // Call updateChart with the current year
@@ -61,7 +48,7 @@ d3.select("#student-filter").on("change", function () {
   });
   
 
-  // Toggle buttons for switching between charts
+// Toggle buttons for switching between charts
 
 d3.select("#flatten-button").on("click", () => {
     currentView = "stacked"; // Update the current view
@@ -157,9 +144,6 @@ function updateChart(selectedYear = "All") {
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
 
-      
-
-    
 
     const groups = svg.selectAll(".category")
       .data(hierarchicalData)
