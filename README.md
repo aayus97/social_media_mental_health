@@ -2,6 +2,11 @@
 
 This project is an interactive visualization tool for exploring the relationship between social media usage and mental health indicators such as anxiety and depression. It utilizes datasets to visualize trends and categories using dynamic D3.js charts.
 
+
+## Research Question
+
+**How have social media usage patterns impacted mental health indicators (e.g., depression, anxiety, sleep disturbances) among university students from 2020 to 2024, and what evolving trends in social media discussions reflect these effects?**
+
 ## Features
 - **Radial Chart**: Visualize anxiety (GAD7) and depression (PHQ9) categories with interactive radial visuals.
 - **Stacked Bar Chart**: Switch to a comparative bar chart to view male and female distributions.
