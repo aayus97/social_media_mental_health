@@ -26,7 +26,7 @@ This project is an interactive visualization tool for exploring the relationship
 To run the project locally:
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/social_media_mental_health.git
+   git clone https://github.com/aayus97/social_media_mental_health.git
 
 
 ## Open `index.html` in a Browser
