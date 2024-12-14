@@ -283,6 +283,9 @@ function updateStackedBarChart(data, categoryKey = "GAD7 Category", selectedYear
     // Generate stack layers
     const layers = stack(stackedData);
 
+    console.log(stackedData);
+
+
     // Draw the stacked bars
     svg.selectAll(".layer")
         .data(layers)
@@ -362,16 +365,20 @@ function updateStackedBarChart(data, categoryKey = "GAD7 Category", selectedYear
     });
 
     svg.selectAll("rect")
-  .on("mouseover", (event, d) => {
-    tooltip.style("opacity", 1)
-      .html(`
-        <strong>Category:</strong> ${d.data.category}<br>
-        <strong>${d.key}:</strong> ${d[1] - d[0]}
-      `)
-      .style("left", `${event.pageX + 10}px`)
-      .style("top", `${event.pageY}px`);
-  })
-  .on("mouseout", () => tooltip.style("opacity", 0));
+    .on("mouseover", (event, d) => {
+      const gender = d.key; // 'Male' or 'Female' directly from stack key
+      tooltip
+          .style("opacity", 1)
+          .html(`
+              <strong>Category:</strong> ${d.data.category}<br>
+              <strong>Count:</strong> ${d[1] - d[0]}
+          `)
+          .style("left", `${event.pageX + 10}px`)
+          .style("top", `${event.pageY}px`);
+  });
+  
+  
+  
 
   
 }
