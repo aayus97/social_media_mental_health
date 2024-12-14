@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Chart with Word Cloud</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js"></script>
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>Effect of Social Media on Mental Health</h1>
+        <p>An interactive visualization of anxiety and depression severity indicators</p>
+      </header>
+
+      <div class="controls-container">
+        <!-- Chart Switcher -->
+        <div class="chart-switcher">
+          <button id="flatten-button">Switch to Stacked Bar Chart</button>
+          <button id="radial-button" style="display:none;">Switch to Radial Chart</button>
+          <button id="line-button">Show Line Chart</button>
+        </div>
+      
+        <!-- Time Slider -->
+        <div id="time-slider-container">
+          <label for="time-slider">Year:</label>
+          <input type="range" id="time-slider" min="2000" max="2023" step="1" value="2000">
+          <span id="time-slider-value">2000</span>
+        </div>
+      
+        <!-- Dropdown Selectors -->
+        <div id="dropdown-container">
+          <label for="student-filter">Full Time Student:</label>
+          <select id="student-filter">
+            <option value="All">All</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+      
+          <label for="category-selector">Category:</label>
+          <select id="category-selector">
+            <option value="GAD7 Category">GAD7</option>
+            <option value="PHQ9 Category">PHQ9</option>
+          </select>
+        </div>
+      </div>
+      
+      
+      
+
+
+
+    <!-- Container for both the radial chart and word cloud -->
+    <div id="chart-container" class="chart-container">
+        <!-- Placeholder for Radial Chart -->
+        <div id="chart" class="chart"></div>
+                
+      
+        <!-- Placeholder for Word Cloud (centered inside the chart) -->
+        <div id="word-cloud" class="word-cloud"></div>
+      </div>
+
+
+    <!-- Tooltip for chart interaction -->
+    <div id="tooltip" class="tooltip"></div>
+  </div>
+
+  <!-- Compact Description Box -->
+<div id="description" class="description">
+    <p><strong>GAD7:</strong> Generalized Anxiety Disorder scale (7 items) to assess anxiety levels.</p>
+    <p><strong>PHQ9:</strong> Patient Health Questionnaire (9 items) to measure depression severity.</p>
+  </div>
+  
+
+  <!-- Footer for name and details -->
+  <footer class="footer">
+    <p>Developed by Aayush Paudel</p>
+    <p>Contact: aayush.paudel@student-cs.fr | GitHub: <a href="https://github.com/aayus97" target="_blank">aayus97</a></p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,382 @@
+
+
+/* General page styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-top: 20px; /* Adding some space at the top for the buttons */
+}
+
+
+
+.container {
+  margin-left: 20px; /* Add some spacing from the controls container */
+  width: calc(100% - 300px); /* Adjust width to avoid overlapping controls */
+}
+
+
+/* Page Header (Title Section) */
+.page-header {
+  text-align: center;
+  padding: 15px 5%; /* Reduce padding and add side spacing for width adjustment */
+  background-color: #f4f4f4; /* Subtle background color */
+  border-bottom: 1px solid #ddd; /* Subtle separation */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position: sticky; /* Makes the header stick to the top */
+  top: 0; /* Aligns it to the top */
+  z-index: 1000; /* Ensures it stays above other elements */
+  max-width: 95%; /* Allow the title section to appear wider */
+  margin: 0 auto; /* Center-align the title block horizontally */
+}
+
+/* Title Text */
+.page-header h1 {
+  font-size: 2rem; /* Slightly reduce the title font size */
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+.page-header p {
+  font-size: 1rem; /* Slightly reduce the subtitle font size */
+  margin: 5px 0 0;
+  color: #666;
+}
+
+
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 1.8rem; /* Slightly smaller title on smaller devices */
+  }
+
+  .page-header p {
+    font-size: 0.9rem; /* Smaller subtitle on smaller devices */
+  }
+}
+
+
+/* Additional Media Query for Very Small Screens */
+@media (max-width: 480px) {
+  .page-header h1 {
+    font-size: 2rem; /* Further reduce title size */
+  }
+
+  .page-header p {
+    font-size: 1rem; /* Further adjust subtitle size */
+  }
+}
+
+/* Chart Switcher Button */
+.chart-switcher {
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the right */
+  margin: 10px 20px 0 auto; /* Space between the header and button, right alignment */
+  width: calc(100% - 40px); /* Ensure the button group fits within the page with some padding */
+  gap: 10px; /* Add spacing between the buttons */
+}
+
+
+
+
+
+.controls {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 10px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+.selectors {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+
+svg text {
+  font-family: "Arial", sans-serif;
+}
+
+path {
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+rect:hover {
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+
+select {
+  padding: 5px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+
+.chart-container {
+  position: relative; /* Ensure children are positioned relative to this container */
+  width: 900px;
+  height: 900px;
+  margin-top: 40px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+#chart {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-top: 50px; /* Leaves space for the description */
+  border: 1px solid #ddd;
+  background-color: #f0f0f0;
+}
+
+
+.word-cloud {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  height: 70%;
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 100%; /* Makes the word cloud circular */
+  overflow: hidden; /* Ensures words don't overflow out of the circle */
+  pointer-events: none;
+  z-index: 10; /* Ensure word cloud is on top of the chart */
+  text-align: center;
+}
+
+
+
+#word-cloud {
+  display: flex;
+  justify-content: center;  /* Horizontal centering */
+  align-items: center;      /* Vertical centering */
+  height: 100%;
+  width: 100%;
+  position: absolute;       /* Ensure it stays within the radial chart */
+  pointer-events: none;     /* Prevent interference with mouse events */
+  z-index: 10;              /* Ensure it is above the radial chart */
+}
+
+
+
+
+
+#word-cloud svg {
+  position: absolute;      /* Allow for absolute positioning of the word cloud */
+  top: 72px;               /* Adjust this value to move the word cloud vertically */
+}
+
+.tooltip {
+  position: absolute;
+  opacity: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  max-width: 200px;
+  text-align: left;
+  transition: opacity 0.3s ease;
+}
+
+
+
+/* Compact Description Box */
+.description {
+  position: fixed; /* Keeps the description visible while scrolling */
+  bottom: 10px; /* Align at the bottom */
+  right: 10px; /* Align to the right */
+  background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent background */
+  border: 1px solid #ddd; /* Subtle border for separation */
+  border-radius: 8px; /* Rounded corners for a modern look */
+  padding: 10px 15px; /* Compact padding for a smaller box */
+  font-size: 12px; /* Smaller font for compactness */
+  line-height: 1.4; /* Tighter line spacing */
+  color: #333; /* Neutral text color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  max-width: 200px; /* Restrict width for a compact layout */
+  z-index: 1000; /* Ensure it appears above other content */
+  text-align: left; /* Left-align text for readability */
+}
+
+.description p {
+  margin: 0 0 8px; /* Reduced margins for tighter spacing */
+}
+
+.description p:last-child {
+  margin-bottom: 0; /* Remove margin for the last paragraph */
+}
+
+.description strong {
+  color: #4CAF50; /* Highlight keywords with a green tone */
+}
+
+
+
+/* Footer Styles */
+.footer {
+  width: 100%; /* Full-width footer */
+  text-align: center; /* Center align the content */
+  padding: 20px;
+  background: #f4f4f4; /* Light gray background for footer */
+  color: #333;
+  border-top: 2px solid #ddd;
+  font-size: 14px;
+  margin-top: auto; /* Push footer to the bottom of the page */
+}
+
+.footer a {
+  color: #007BFF; /* Blue color for links */
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Controls Container */
+.controls-container {
+  position: fixed; /* Fix the controls to the viewport */
+  top: 25%; /* Adjust this to position it vertically */
+  right: 10px; /* Align to the right edge */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 10px; /* Space between items */
+  padding: 10px;
+  background-color: #f9f9f9; /* Light background for distinction */
+  border: 1px solid #ddd; /* Subtle border for structure */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000; /* Ensure it stays above other content */
+  max-width: 200px;
+}
+
+/* Chart Switcher Buttons */
+.chart-switcher {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 10px; /* Space between buttons */
+}
+
+.chart-switcher button {
+  padding: 6px 10px; /* Compact button size */
+  font-size: 12px; /* Smaller font size */
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg, #4CAF50, #388E3C); /* Green gradient */
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.chart-switcher button:hover {
+  background: linear-gradient(135deg, #388E3C, #2E7D32);
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Time Slider Container */
+#time-slider-container {
+  display: flex;
+  flex-direction: column; /* Stack label, slider, and value */
+  gap: 5px; /* Space between label and slider */
+}
+
+#time-slider-container label {
+  font-size: 12px; /* Smaller label size */
+  font-weight: bold;
+  color: #333;
+}
+
+#time-slider {
+  width: 100%; /* Full width slider within container */
+  appearance: none;
+  height: 8px;
+  background: linear-gradient(90deg, #4CAF50, #2E7D32); /* Green gradient */
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+#time-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #ffffff; /* White thumb for contrast */
+  border: 2px solid #4CAF50;
+  border-radius: 50%; /* Circular thumb */
+  cursor: pointer;
+}
+
+#time-slider-value {
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Dropdown Container */
+#dropdown-container {
+  display: flex;
+  flex-direction: column; /* Stack labels and dropdowns */
+  gap: 10px; /* Add spacing between items */
+}
+
+#dropdown-container label {
+  font-size: 12px; /* Smaller label size */
+  font-weight: bold;
+  color: #333;
+}
+
+#dropdown-container select {
+  width: 160px; /* Full width dropdown */
+  padding: 4px 8px; /* Compact padding */
+  font-size: 12px; /* Smaller font size */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
